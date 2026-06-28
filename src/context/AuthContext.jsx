@@ -12,13 +12,13 @@ import {
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAx3aoaz6c9JM2GNwTrWCwwYW07Mx24dyg",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "masari-954c9.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "masari-954c9",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "masari-954c9.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "160015883227",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:160015883227:web:cf275474754a3f4023a5fe",
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-C1W7ME4ZJ2"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);

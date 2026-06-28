@@ -1,98 +1,99 @@
-# 🧭 Masari - Academic & Professional Trajectory Advisor
-> **Decentralized Neo-Brutalist Career Counselor Powered by Gemini 2.5 Flash**
+# 🧭 Masari — Academic & Career Path Advisor
 
-Masari is a high-fidelity academic and career advisor platform built for students and professionals in the Kingdom of Saudi Arabia and beyond. Designed with a vibrant **Neo-Brutalist 3D design system**, it offers interactive tools, interactive eyeball-tracking, cursor magnetics, and 3D card physics, all connected to live-grounded generative models via the Google Gemini developer API.
+<p align="left">
+  <img src="https://img.shields.io/badge/Vite-v8.0-B73BFE?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/React-v19.0-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/Gemini_2.5_Flash-v1beta-1A73E8?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Gemini" />
+  <img src="https://img.shields.io/badge/License-MIT-4fb922?style=for-the-badge" alt="License" />
+</p>
 
 ---
 
-## 📸 Platform Interface
+## 📸 Interface Preview
 
 ![Masari Platform Landing Page](public/screenshots/landing_page.png)
 
 ---
 
-## 🚀 Key Features
+## 🚀 English — Overview & Documentation
 
-*   **🧠 RIASEC Diagnostic Career Test**: A 50-question interactive personality evaluation mapping scores to 100+ standard college majors. Includes a detailed AI-generated counseling summary.
-*   **🏫 Saudi University Directory**: A comprehensive index of Saudi universities containing local rankings, difficulty scores, and admission thresholds (free). Includes an **AI Deep Search** targeting international universities and criteria (costs 5 points).
-*   **📊 Live Salary Curve Predictor**: Web-grounded salary index searches (linked to Glassdoor/Payscale via Gemini search plugins) estimating salary forecasts in local currency based on major, skills, and target region.
-*   **💳 Stripe Checkout Simulator & Sandbox**: Fully interactive mock payment portal mimicking real Stripe credit card checks and transactions to secure credits/upgrades.
-*   **💬 AI Counselor Chatroom**: An interactive real-time counseling chat session answering academic and workplace progression queries.
-*   **🛠️ Developer Debug Toolbar**: An integrated debug toolbar allowing developer profiles to instantly credit 100 points for verification.
+**Masari** is an advanced academic planning and professional trajectory counselor application customized for students and professionals in the Gulf/Saudi region. Built using a **Neo-Brutalist 3D style guide**, it features interactive cursor eye-tracking, magnetic physics, and 3D tilting card structures, connected to the **Google Gemini 2.5 Flash** developer API.
 
----
+### 🌟 Key Modules
 
-## 🛠️ Tech Stack
+*   **🧠 RIASEC Career Test**: Complete a 50-question personality matrix mapping answers to 100+ academic majors. Receives a comprehensive AI counselor analysis summary.
+*   **🏫 Saudi University Directory**: An interactive directory containing Saudi university admission requirements (weighted criteria), local rankings, and acceptance difficulties (free). Also features an **AI Deep Search** for international criteria (costs 5 points).
+*   **📊 Live Web-Grounded Salaries**: Performs real-time salary indexing (Glassdoor, Payscale, and Indeed integrations) based on major, skills, and target region.
+*   **💳 Stripe Sandbox portal**: Full checkout simulator to buy credits or upgrade subscription tiers using mock credit card detail checks.
+*   **💬 AI Counselor Chatroom**: Talk directly with a creative advisor chatbot answering educational and career queries.
+*   **🛠️ Developer Debug Button**: Instantly injector to add +100 testing points to active profiles.
 
-*   **Frontend**: React (Vite), TailwindCSS, custom GPU-composited 3D CSS physics.
-*   **Backend & DB**: Firebase Authentication & Firestore Cloud Database.
-*   **AI Models**: Google Gemini 2.5 Flash via v1beta API endpoints.
-*   **Search Grounding**: Google Search grounding tools configuration.
-*   **Animations**: Magnetic wrappers, 3D card tilt triggers, and tracking eye physics.
+### ⚙️ Quick Installation
 
----
-
-## 📦 Installation & Setup
-
-1.  **Clone the Repository**:
+1.  **Clone & Enter Workspace**:
     ```bash
     git clone https://github.com/Moha2005269/masari-platform.git
     cd masari-platform
     ```
 
-2.  **Install Dependencies**:
+2.  **Install Node Modules**:
     ```bash
     npm install
     ```
 
-3.  **Environment Variables**:
-    Create a `.env` file in the root directory:
+3.  **Configure Environment Variables** (`.env`):
     ```env
-    VITE_GEMINI_API_KEY=your_gemini_api_key_here
-    VITE_FIREBASE_API_KEY=your_firebase_api_key
-    VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-    VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
-    VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
-    VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
-    VITE_FIREBASE_APP_ID=your_firebase_app_id
+    VITE_FIREBASE_API_KEY=your_key
+    VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+    VITE_FIREBASE_PROJECT_ID=your_project_id
+    VITE_FIREBASE_STORAGE_BUCKET=your_bucket
+    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+    VITE_FIREBASE_APP_ID=your_app_id
+    VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+    VITE_GEMINI_API_KEY=your_gemini_api_key
     ```
 
-4.  **Run Development Server**:
+4.  **Run Dev Server**:
     ```bash
     npm run dev
-    ```
-
-5.  **Build Production Bundle**:
-    ```bash
-    npm run build
     ```
 
 ---
 
 <br>
 
-# 🧭 منصة مساري - مستشار المسارات الأكاديمية والمهنية
-> **منصة تفاعلية متميزة تعتمد على نموذج الذكاء الاصطناعي Gemini 2.5 Flash وتصميم نيو-بروتالست ثلاثي الأبعاد**
+## 🚀 العربية — نظرة عامة والتوثيق
 
-منصة **مساري** هي نظام مستشار أكاديمي ومهني متطور موجه للطلاب والمهنيين في المملكة العربية السعودية وخارجها. تم تصميمها بنظام جمالي قوي وجريء يعتمد على تأثيرات ثلاثية الأبعاد تفاعلية، مثل تتبع حركة الماوس بالعين، ومغناطيسية الأزرار، وتأثيرات الإمالة ثلاثية الأبعاد للبطاقات، مع ربطها مباشرة بنماذج التوليد الفورية عبر واجهة برمجة تطبيقات Google Gemini.
+منصة **مساري** هي مستشار أكاديمي ومهني متطور يقدم توجيهات تفاعلية مخصصة للطلاب والمهنيين في المملكة العربية السعودية والخليج العربي. تعتمد المنصة على لغة بصرية فريدة تجمع بين **التصميم النيو-بروتالي ثلاثي الأبعاد** (Neo-Brutalist 3D) وأحدث تقنيات تتبع حركة المؤشر بالعين، والأزرار المغناطيسية، والبطاقات ثلاثية الأبعاد الإمالة، مع تكامل كامل مع نموذج **Google Gemini 2.5 Flash**.
 
----
+### 🌟 الأقسام الرئيسية للمنصة
 
-## 🚀 الميزات الرئيسية
-
-*   **🧠 اختبار الميول المهنية RIASEC**: تقييم تفاعلي مكون من 50 سؤالاً يربط النتيجة بأكثر من 100 تخصص جامعي مع تقرير تحليلي مدعوم بالذكاء الاصطناعي.
-*   **🏫 دليل الجامعات السعودية**: مرجع متكامل للجامعات السعودية يشمل نسب القبول والموزونة مجاناً، مع ميزة **البحث العميق بالذكاء الاصطناعي** للجامعات العالمية وشروط القبول (بقيمة 5 نقاط).
-*   **📊 مؤشر رواتب وتوقعات سوق العمل**: محاكي رواتب مدعوم بأدوات بحث الويب الفورية لتقدير نطاقات الأجور بالعملات المحلية بناءً على التخصص، والمهارات، والمنطقة المستهدفة.
+*   **🧠 اختبار الميول المهنية RIASEC**: تقييم شامل من 50 سؤالاً يربط النتيجة بأكثر من 100 تخصص أكاديمي مع تحليل مهني مدعوم بالذكاء الاصطناعي.
+*   **🏫 دليل الجامعات السعودية**: دليل متكامل يشمل شروط القبول، النسب الموزونة، والصعوبة مجاناً، مع ميزة **البحث الذكي بالذكاء الاصطناعي** للجامعات العالمية وشروطها (بقيمة 5 نقاط).
+*   **📊 مؤشر رواتب وتوقعات سوق العمل**: محاكي أجور فوري مدعوم بالبحث السحابي المباشر لتقدير رواتب المهن بالعملات المحلية بناءً على التخصص، المهارات، والمنطقة المستهدفة.
 *   **💳 بوابة دفع افتراضية Stripe**: محاكي متكامل لعمليات الدفع والترقيات عبر بطاقات الائتمان لتجربة شحن النقاط وفتح الميزات.
-*   **💬 غرف المحادثة مع المستشار الذكي**: دردشة ذكية تفاعلية فورية تقدم نصائح مهنية وتوجيهات عملية مدعومة بالذكاء الاصطناعي.
-*   **🛠️ شريط تجربة المطورين**: شريط مخفي يتيح للمطورين شحن 100 نقطة مجانية فوراً لتسهيل اختبار الميزات.
+*   **💬 غرف المحادثة مع المستشار الذكي**: مستشار ذكي فوري يجيب على الاستشارات الدراسية والمهنية بدقة عالية.
+*   **🛠️ شريط تجربة المطورين**: زر مخفي يتيح شحن 100 نقطة مجانية فوراً لتسهيل اختبار الميزات.
 
----
+### ⚙️ خطوات التثبيت السريع
 
-## 🛠️ الأدوات والتقنيات
+1.  **نسخ المستودع**:
+    ```bash
+    git clone https://github.com/Moha2005269/masari-platform.git
+    cd masari-platform
+    ```
 
-*   **الواجهة الأمامية**: React (Vite)، TailwindCSS، تأثيرات CSS ثلاثية الأبعاد مسرعة بالبطاقة الرسومية.
-*   **قاعدة البيانات والهوية**: Firebase Authentication و Cloud Firestore.
-*   **نماذج الذكاء الاصطناعي**: Google Gemini 2.5 Flash عبر نهايات v1beta.
-*   **تغذية البحث الفوري**: مدمجة مع أدوات Google Search لتوفير بيانات حية موثقة.
-*   **الحركة والتفاعل**: هياكل مغناطيسية، وتأثيرات حركة العين التفاعلية، وإمالة 3DTilt للبطاقات.
+2.  **تثبيت الحزم**:
+    ```bash
+    npm install
+    ```
+
+3.  **تهيئة ملف البيئة** (`.env`):
+    أدخل مفاتيح Firebase و Gemini API الخاصة بك كما هو موضح في قسم التثبيت باللغة الإنجليزية أعلاه.
+
+4.  **تشغيل الخادم المحلي**:
+    ```bash
+    npm run dev
+    ```
