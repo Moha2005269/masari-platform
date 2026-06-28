@@ -1,11 +1,11 @@
-# 🧭 Masari — Academic & Career Path Advisor
+# 🧭 Masari — High-Fidelity Academic & Professional Path Advisor
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Vite-v8.0-B73BFE?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/React-v19.0-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
-  <img src="https://img.shields.io/badge/Gemini_2.5_Flash-v1beta-1A73E8?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Gemini" />
+  <img src="https://img.shields.io/badge/Vite-v8.0.16-B73BFE?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/React-v19.0.0-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4.0.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Firebase-Auth_%26_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/Gemini_2.5_Flash-v1beta_API-1A73E8?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Gemini" />
   <img src="https://img.shields.io/badge/License-MIT-4fb922?style=for-the-badge" alt="License" />
 </p>
 
@@ -17,22 +17,88 @@
 
 ---
 
-## 🚀 English — Overview & Documentation
+## 🚀 English — Overview & Technical Documentation
 
-**Masari** is an advanced academic planning and professional trajectory counselor application customized for students and professionals in the Gulf/Saudi region. Built using a **Neo-Brutalist 3D style guide**, it features interactive cursor eye-tracking, magnetic physics, and 3D tilting card structures, connected to the **Google Gemini 2.5 Flash** developer API.
+**Masari** is an enterprise-grade academic planning and career direction counseling platform engineered for students and young professionals. Constructed on a bold **Neo-Brutalist 3D design system**, the platform provides immersive client-side micro-interactions (mouse-tracking eye kinematics, magnetic force fields, and GPU-composited 3D matrix card tilts) coupled with a web-grounded generative AI orchestrator utilizing the **Google Gemini 2.5 Flash** REST API.
 
-### 🌟 Key Modules
+---
 
-*   **🧠 RIASEC Career Test**: Complete a 50-question personality matrix mapping answers to 100+ academic majors. Receives a comprehensive AI counselor analysis summary.
-*   **🏫 Saudi University Directory**: An interactive directory containing Saudi university admission requirements (weighted criteria), local rankings, and acceptance difficulties (free). Also features an **AI Deep Search** for international criteria (costs 5 points).
-*   **📊 Live Web-Grounded Salaries**: Performs real-time salary indexing (Glassdoor, Payscale, and Indeed integrations) based on major, skills, and target region.
-*   **💳 Stripe Sandbox portal**: Full checkout simulator to buy credits or upgrade subscription tiers using mock credit card detail checks.
-*   **💬 AI Counselor Chatroom**: Talk directly with a creative advisor chatbot answering educational and career queries.
-*   **🛠️ Developer Debug Button**: Instantly injector to add +100 testing points to active profiles.
+### 🏛️ System Architecture & Codebase Topology
 
-### ⚙️ Quick Installation
+The application uses a highly decoupled, modular React architecture:
+*   **App Core (`src/App.jsx`)**: Acts as the central router, state coordinator, and common props provider. Coordinates app-wide settings (language toggles, dark mode, toast alerts, and modal status states).
+*   **Authentication & State Hook (`src/context/AuthContext.jsx`)**: Wraps the React tree inside a global `AuthProvider`. It manages real-time authentication state changes, maps profile credentials, and updates user metrics (points and subscription levels) directly on Firestore.
+*   **Data Models (`src/data/`)**: Maintains standalone datasets including 50 standardized RIASEC personality questions (`questions.js`), 100+ academic majors (`majors.js`), and comprehensive entry threshold indices for Saudi universities (`universities.js`).
+*   **Specialized Pages (`src/pages/tools/`)**: Isolated, stateful modules for the RIASEC career inventory, academic readiness diagnostic, salary predictors, counselor chatbot, and university registries.
 
-1.  **Clone & Enter Workspace**:
+---
+
+### 💾 Firebase Infrastructure & Data Schemas
+
+The platform is integrated with **Firebase v10+** (utilizing Firebase Auth and Cloud Firestore) to manage secure user profiles and persistent artifacts:
+
+#### 🔐 Authentication Setup
+* Supports email/password sign-up and sign-in.
+* Integrates native Google Popup Sign-in.
+* **Default Profile Initialization**: New users are initialized with `points: 50` and `subscriptionTier: "free"`.
+
+#### 📂 Firestore Collection Schemas
+1.  **User Profiles Collection**:
+    *   **Path**: `/artifacts/masari-academic-decoder/users/{uid}`
+    *   **Fields**:
+        ```typescript
+        interface UserProfile {
+          id: string; // User ID matching authentication UID
+          name: string;
+          email: string;
+          avatarId: string; // Identifier for SVG avatars
+          points: number; // Balance of AI credits (starts at 50)
+          subscriptionTier: 'free' | 'bro';
+          careerPersona?: string; // Career focus generated by RIASEC test
+          riasecTitle?: string; // Dominant RIASEC code (e.g. "Investigative / Social")
+          weightedScore?: number; // Last academic index calculation
+          testMatchScore?: number; // Last compatibility rating
+          hasTakenTest: boolean;
+        }
+        ```
+2.  **Saved Reports Collection**:
+    *   **Path**: `/artifacts/masari-academic-decoder/users/{uid}/saved_reports/{reportId}`
+    *   **Fields**:
+        ```typescript
+        interface SavedReport {
+          title: string;
+          content: string; // AI generated Markdown document text
+          date: string; // ISO timestamp string
+        }
+        ```
+
+---
+
+### 🧠 Gemini Generative AI & Web Grounding
+
+All dynamic intelligence features are powered by the client-side REST gateway located in `src/config/lmStudio.js`:
+*   **Endpoint Integration**: Targets the `gemini-2.5-flash` model on the Google developer `v1beta` API.
+*   **Native Search Grounding**: Leverages Google Search Grounding by setting `googleSearch` tool configurations in the JSON payload request. This enables the model to fetch and verify live datasets (e.g., vacancy postings and industry salary curves).
+*   **Bilingual Localization Constraints**:
+    *   Prompts are appended with language instructions matching the client UI state:
+        *   **Arabic**: `"MUST WRITE ENTIRELY IN ARABIC. DO NOT USE ENGLISH."`
+        *   **English**: `"MUST WRITE ENTIRELY IN ENGLISH. DO NOT USE ARABIC."`
+*   **Points Billing Safety Controls**: Checks user point balance (`onCheckPoints`) prior to executing generative requests. Billed credits are only subtracted (`onDeductPoints`) following a successful non-fallback response from the API.
+
+---
+
+### 💳 Stripe Checkout Sandbox Simulation
+
+Stripe checkout flows are handled by `src/pages/StripeCheckoutSimulator.jsx`:
+*   **Visual Fidelity**: Simulates Stripe Checkout interface featuring an invoice summary, payment inputs, and live validation.
+*   **Simulated Validation**: Checks standard card inputs (such as sandbox test card `4242 4242 4242 4242`).
+*   **Credit Provisioning**: Once mock payment succeeds, it returns the target transaction data to `App.jsx`, updates the user's points/tier on Firestore, and triggers a dashboard notification.
+
+---
+
+### 📦 Setup & Production Deployment
+
+1.  **Clone the Repository**:
     ```bash
     git clone https://github.com/Moha2005269/masari-platform.git
     cd masari-platform
@@ -44,56 +110,81 @@
     ```
 
 3.  **Configure Environment Variables** (`.env`):
+    Create a `.env` file in the root directory:
     ```env
-    VITE_FIREBASE_API_KEY=your_key
-    VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-    VITE_FIREBASE_PROJECT_ID=your_project_id
-    VITE_FIREBASE_STORAGE_BUCKET=your_bucket
-    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-    VITE_FIREBASE_APP_ID=your_app_id
-    VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
-    VITE_GEMINI_API_KEY=your_gemini_api_key
+    VITE_FIREBASE_API_KEY="your_api_key"
+    VITE_FIREBASE_AUTH_DOMAIN="your_project.firebaseapp.com"
+    VITE_FIREBASE_PROJECT_ID="your_project_id"
+    VITE_FIREBASE_STORAGE_BUCKET="your_project.firebasestorage.app"
+    VITE_FIREBASE_MESSAGING_SENDER_ID="your_messaging_sender_id"
+    VITE_FIREBASE_APP_ID="your_app_id"
+    VITE_FIREBASE_MEASUREMENT_ID="your_measurement_id"
+    VITE_GEMINI_API_KEY="your_gemini_developer_key"
     ```
 
-4.  **Run Dev Server**:
+4.  **Run Development Environment**:
     ```bash
     npm run dev
+    ```
+
+5.  **Build Production Assets**:
+    ```bash
+    npm run build
     ```
 
 ---
 
 <br>
 
-## 🚀 العربية — نظرة عامة والتوثيق
+## 🚀 العربية — التوثيق الفني ونظرة عامة
 
-منصة **مساري** هي مستشار أكاديمي ومهني متطور يقدم توجيهات تفاعلية مخصصة للطلاب والمهنيين في المملكة العربية السعودية والخليج العربي. تعتمد المنصة على لغة بصرية فريدة تجمع بين **التصميم النيو-بروتالي ثلاثي الأبعاد** (Neo-Brutalist 3D) وأحدث تقنيات تتبع حركة المؤشر بالعين، والأزرار المغناطيسية، والبطاقات ثلاثية الأبعاد الإمالة، مع تكامل كامل مع نموذج **Google Gemini 2.5 Flash**.
+منصة **مساري** هي نظام مستشار أكاديمي ومهني متطور يقدم توجيهات تفاعلية مخصصة للطلاب والمهنيين في المملكة العربية السعودية والخليج العربي. تعتمد المنصة على لغة بصرية فريدة تجمع بين **التصميم النيو-بروتالي ثلاثي الأبعاد** (Neo-Brutalist 3D) وأحدث تقنيات تتبع حركة المؤشر بالعين، والأزرار المغناطيسية، والبطاقات ثلاثية الأبعاد الإمالة، مع تكامل كامل مع نموذج **Google Gemini 2.5 Flash**.
 
-### 🌟 الأقسام الرئيسية للمنصة
+---
 
-*   **🧠 اختبار الميول المهنية RIASEC**: تقييم شامل من 50 سؤالاً يربط النتيجة بأكثر من 100 تخصص أكاديمي مع تحليل مهني مدعوم بالذكاء الاصطناعي.
-*   **🏫 دليل الجامعات السعودية**: دليل متكامل يشمل شروط القبول، النسب الموزونة، والصعوبة مجاناً، مع ميزة **البحث الذكي بالذكاء الاصطناعي** للجامعات العالمية وشروطها (بقيمة 5 نقاط).
-*   **📊 مؤشر رواتب وتوقعات سوق العمل**: محاكي أجور فوري مدعوم بالبحث السحابي المباشر لتقدير رواتب المهن بالعملات المحلية بناءً على التخصص، المهارات، والمنطقة المستهدفة.
-*   **💳 بوابة دفع افتراضية Stripe**: محاكي متكامل لعمليات الدفع والترقيات عبر بطاقات الائتمان لتجربة شحن النقاط وفتح الميزات.
-*   **💬 غرف المحادثة مع المستشار الذكي**: مستشار ذكي فوري يجيب على الاستشارات الدراسية والمهنية بدقة عالية.
-*   **🛠️ شريط تجربة المطورين**: زر مخفي يتيح شحن 100 نقطة مجانية فوراً لتسهيل اختبار الميزات.
+### 🏛️ البنية الهيكلية وتصميم الكود
 
-### ⚙️ خطوات التثبيت السريع
+تعتمد المنصة على معمارية برمجية تفاعلية مفككة بالكامل باستخدام مكتبة React:
+*   **محور النظام (`src/App.jsx`)**: المنسق الرئيسي للحالات المشتركة والموجه الذي يدير اللغة، والواجهات الفعالة، ونظام الإشعارات، والتحقق المالي المباشر للنقاط.
+*   **إدارة الهوية والتسجيل (`src/context/AuthContext.jsx`)**: يدير حالات تسجيل الدخول والتسجيل عبر نظام Firebase ويقوم بحفظ بيانات المستخدم وتحديث نقاطه وخطة اشتراكه مباشرة في Firestore.
+*   **نماذج البيانات (`src/data/`)**: تحتوي على المصفوفات الأكاديمية والمهنية الثابتة مثل أسئلة اختبار RIASEC الخمسين (`questions.js`)، ومجالات التخصصات الدراسية (`majors.js`)، ومعايير الموزونة وقواعد القبول للجامعات السعودية (`universities.js`).
+*   **الصفحات المتخصصة (`src/pages/tools/`)**: كتل برمجية مستقلة لكل أداة (اختبار الميول، محاكي الرواتب، مرشد المحادثة الذكي، ودليل الجامعات).
 
-1.  **نسخ المستودع**:
-    ```bash
-    git clone https://github.com/Moha2005269/masari-platform.git
-    cd masari-platform
-    ```
+---
 
-2.  **تثبيت الحزم**:
-    ```bash
-    npm install
-    ```
+### 💾 قاعدة بيانات وبنية ملفات Firebase
 
-3.  **تهيئة ملف البيئة** (`.env`):
-    أدخل مفاتيح Firebase و Gemini API الخاصة بك كما هو موضح في قسم التثبيت باللغة الإنجليزية أعلاه.
+ترتبط المنصة مباشرة بخدمات **Firebase v10+** لإدارة الحسابات وتخزين التقارير والمستندات بمرونة وأمان:
 
-4.  **تشغيل الخادم المحلي**:
-    ```bash
-    npm run dev
-    ```
+#### 🔐 إدارة الهوية والتسجيل
+* تتيح إنشاء الحسابات وسجلات الدخول بالبريد وكلمة المرور.
+* تدعم تسجيل الدخول الفوري عبر حسابات Google بلمسة واحدة.
+* **شحن الرصيد المبدئي**: يحصل كل حساب جديد مسجل تلقائياً على **50 نقطة مجانية** وخطة اشتراك مجانية أساسية.
+
+#### 📂 جداول مستندات Firestore
+1.  **جدول الحسابات الشخصية (Profiles)**:
+    *   **المسار**: `/artifacts/masari-academic-decoder/users/{uid}`
+    *   **الحقول الرئيسية**:
+        *   `id`: معرف المستخدم الفريد المطابق لمعرف توثيق الحساب.
+        *   `points`: رصيد نقاط استخدام الذكاء الاصطناعي الحالي.
+        *   `subscriptionTier`: نوع الاشتراك الحالي للبروفايل (`free` أو `bro`).
+        *   `careerPersona`: الشخصية المهنية المحللة للمستخدم بعد إتمام الاختبار.
+2.  **جدول التقارير المحفوظة (Saved Reports)**:
+    *   **المسار**: `/artifacts/masari-academic-decoder/users/{uid}/saved_reports/{reportId}`
+    *   **الحقول الرئيسية**:
+        *   `title`: عنوان التقرير الأكاديمي أو المهني.
+        *   `content`: النص التحليلي الكامل للتقرير بتنسيق Markdown.
+        *   `date`: التاريخ والوقت الزمني الفعلي لحفظ الملف.
+
+---
+
+### 🧠 نظام الذكاء الاصطناعي والاستعلام
+
+يتم معالجة جميع الاستشارات عبر ملف الاستدعاء الموحد في `src/config/lmStudio.js`:
+*   **النموذج النشط**: يستهدف نموذج `gemini-2.5-flash` من خلال إصدار `v1beta` للوصول لأفضل دقة استجابة.
+*   **البحث الفوري المتصل بالإنترنت**: يتم تفعيل أداة `googleSearch` في الطلب البرمجي للحصول على بيانات محدثة مباشرة من محركات البحث للتحقق من أجور الشركات الحالية ومتطلبات القبول بدقة.
+*   **التحكم باللغات**:
+    *   يتم تحديد لغة المخرجات تلقائياً بناءً على اختيار المستخدم للغة الموقع:
+        *   **اللغة العربية**: `"MUST WRITE ENTIRELY IN ARABIC. DO NOT USE ENGLISH."`
+        *   **اللغة الإنجليزية**: `"MUST WRITE ENTIRELY IN ENGLISH. DO NOT USE ARABIC."`
+*   **أمان النقاط وحماية الرصيد**: يمنع النظام تشغيل الاستعلام إذا كانت نقاط المستخدم غير كافية، ويضمن عدم خصم أي نقاط من رصيده إلا بعد استجابة الذكاء الاصطناعي بنجاح وتسليم التقرير للمستخدم.
